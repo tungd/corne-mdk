@@ -1,0 +1,18 @@
+/*
+ * Copyright (c) 2020 Pete Johanson
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "corne_mdk.dtsi"
+
+&kscan0 {
+  col-gpios
+    = <&gpio0 4 GPIO_ACTIVE_HIGH>
+    , <&gpio0 5 GPIO_ACTIVE_HIGH>
+    , <&gpio0 6 GPIO_ACTIVE_HIGH>
+    , <&gpio0 7 GPIO_ACTIVE_HIGH>
+    , <&gpio0 8 GPIO_ACTIVE_HIGH>
+    , <&gpio0 9 GPIO_ACTIVE_HIGH>
+    ;
+};
