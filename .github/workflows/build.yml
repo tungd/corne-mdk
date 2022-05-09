@@ -33,29 +33,29 @@ jobs:
         run: west update
       - name: West Zephyr export
         run: west zephyr-export
-      - name: West Build (KEYBOARD_TITLE Left)
-        run: west build -s zmk/app -b BOARD_NAME -- -DSHIELD=SHIELD_NAME_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: KEYBOARD_TITLE DTS File
+      - name: West Build (Corne MDK Left)
+        run: west build -s zmk/app -b nrf52840_mdk_usb_dongle -- -DSHIELD=corne_mdk_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: Corne MDK DTS File
         if: ${{ always() }}
-        run: cat -n build/zephyr/BOARD_NAME.dts.pre.tmp
-      - name: KEYBOARD_TITLE Left Kconfig file
+        run: cat -n build/zephyr/nrf52840_mdk_usb_dongle.dts.pre.tmp
+      - name: Corne MDK Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
         run: cp build/zephyr/zmk.uf2 SHIELD_NAME_left_BOARD_NAME.uf2
-      - name: Archive (KEYBOARD_TITLE Left)
+      - name: Archive (Corne MDK Left)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: SHIELD_NAME_left_BOARD_NAME.uf2
-      - name: West Build (KEYBOARD_TITLE Right)
-        run: west build --pristine -s zmk/app -b BOARD_NAME -- -DSHIELD=SHIELD_NAME_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+          path: corne_mdk_left_nrf52840_mdk_usb_dongle.uf2
+      - name: West Build (Corne MDK Right)
+        run: west build --pristine -s zmk/app -b nrf52840_mdk_usb_dongle -- -DSHIELD=corne_mdk_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
-      - name: KEYBOARD_TITLE Right Kconfig file
+      - name: Corne MDK Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 SHIELD_NAME_right_BOARD_NAME.uf2
-      - name: Archive (KEYBOARD_TITLE Right)
+        run: cp build/zephyr/zmk.uf2 corne_mdk_right_nrf52840_mdk_usb_dongle.uf2
+      - name: Archive (Corne MDK Right)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: SHIELD_NAME_right_BOARD_NAME.uf2
+          path: corne_mdk_right_nrf52840_mdk_usb_dongle.uf2
