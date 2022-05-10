@@ -33,11 +33,12 @@ jobs:
         run: west update
       - name: West Zephyr export
         run: west zephyr-export
+
       - name: West Build (Corne MDK Left)
         run: west build -s zmk/app -b nrf52840_mdk_usb_dongle -- -DSHIELD=corne_mdk_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Corne MDK DTS File
-        if: ${{ always() }}
-        run: cat -n build/zephyr/nrf52840_mdk_usb_dongle.dts.pre.tmp
+      # - name: Corne MDK DTS File
+      #   if: ${{ always() }}
+      #   run: cat -n build/zephyr/nrf52840_mdk_usb_dongle.dts.pre.tmp
       - name: Corne MDK Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
@@ -47,9 +48,9 @@ jobs:
         with:
           name: firmware
           path: corne_mdk_left_nrf52840_mdk_usb_dongle.uf2
+
       - name: West Build (Corne MDK Right)
         run: west build --pristine -s zmk/app -b nrf52840_mdk_usb_dongle -- -DSHIELD=corne_mdk_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-
       - name: Corne MDK Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
