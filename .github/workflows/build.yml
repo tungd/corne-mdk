@@ -42,7 +42,7 @@ jobs:
       - name: Corne MDK Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 SHIELD_NAME_left_BOARD_NAME.uf2
+        run: cp build/zephyr/zmk.uf2 corne_mdk_left_nrf52840_mdk_usb_dongle.uf2
       - name: Archive (Corne MDK Left)
         uses: actions/upload-artifact@v2
         with:
